@@ -1,0 +1,19 @@
+name: Unzip ZIP File
+on:
+  push:
+    paths:
+      - 'your-zip-file.zip'
+
+jobs:
+  unzip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Unzip the file
+        run: |
+          mkdir extracted
+          unzip your-zip-file.zip -d extracted/
+          mv extracted/* .
+          rm -rf extracted
